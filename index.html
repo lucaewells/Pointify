@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pointify</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Daily points tracker</p>
+          <h1>Pointify</h1>
+        </div>
+        <div class="date-picker">
+          <label for="log-date">Log date</label>
+          <input id="log-date" type="date">
+        </div>
+      </header>
+
+      <section class="score-strip" aria-label="Current progress">
+        <article class="metric personal-best">
+          <span class="metric-label">Personal Best</span>
+          <strong id="personal-best">0</strong>
+          <span id="best-day">No logs yet</span>
+        </article>
+        <article class="metric">
+          <span class="metric-label">Today</span>
+          <strong id="today-total">0</strong>
+          <span>points logged</span>
+        </article>
+        <article class="metric">
+          <span class="metric-label">7 day average</span>
+          <strong id="week-average">0</strong>
+          <span>points per day</span>
+        </article>
+        <article class="metric">
+          <span class="metric-label">Locked in streak</span>
+          <strong id="streak">0</strong>
+          <span>days over goal</span>
+        </article>
+      </section>
+
+      <section class="workspace">
+        <div class="panel log-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Daily log</p>
+              <h2 id="selected-day-title">Today</h2>
+            </div>
+            <div class="goal-control">
+              <label for="goal-input">Daily goal</label>
+              <input id="goal-input" type="number" min="1" step="1">
+            </div>
+          </div>
+
+          <div class="quick-log" id="activity-buttons" aria-label="Quick log activities"></div>
+
+          <form id="activity-form" class="activity-form">
+            <div class="field">
+              <label for="activity-name">Activity</label>
+              <input id="activity-name" type="text" placeholder="e.g. 45 minute workout" required>
+            </div>
+            <div class="field category-field">
+              <label for="activity-category">Category</label>
+              <select id="activity-category" required>
+                <option value="eating">Eating</option>
+                <option value="exercising">Exercising</option>
+                <option value="studying">Studying</option>
+              </select>
+            </div>
+            <div class="field points-field">
+              <label for="activity-points">Points</label>
+              <input id="activity-points" type="number" min="1" step="1" placeholder="10" required>
+            </div>
+            <button type="submit">Add activity</button>
+          </form>
+
+          <div class="category-totals" aria-label="Category totals">
+            <div>
+              <span class="dot eating"></span>
+              <span>Eating</span>
+              <strong id="eating-total">0</strong>
+            </div>
+            <div>
+              <span class="dot exercising"></span>
+              <span>Exercise</span>
+              <strong id="exercising-total">0</strong>
+            </div>
+            <div>
+              <span class="dot studying"></span>
+              <span>Study</span>
+              <strong id="studying-total">0</strong>
+            </div>
+          </div>
+
+          <ul class="log-list" id="log-list" aria-live="polite"></ul>
+        </div>
+
+        <aside class="panel activity-bank">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Saved activities</p>
+              <h2>Point menu</h2>
+            </div>
+          </div>
+          <p class="panel-copy">Add an activity once, then tap it whenever you complete it.</p>
+          <ul id="activity-list" class="activity-list"></ul>
+        </aside>
+      </section>
+
+      <section class="charts">
+        <article class="panel chart-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Progress</p>
+              <h2>Daily fluctuations</h2>
+            </div>
+            <select id="chart-range" aria-label="Chart range">
+              <option value="7">7 days</option>
+              <option value="14">14 days</option>
+              <option value="30">30 days</option>
+            </select>
+          </div>
+          <canvas id="daily-chart" width="900" height="320" aria-label="Daily points chart"></canvas>
+        </article>
+
+        <article class="panel chart-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Breakdown</p>
+              <h2>Category mix</h2>
+            </div>
+          </div>
+          <canvas id="category-chart" width="500" height="320" aria-label="Category points chart"></canvas>
+        </article>
+      </section>
+
+      <section class="panel history-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">History</p>
+            <h2>Recent days</h2>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Eating</th>
+                <th>Exercise</th>
+                <th>Study</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody id="history-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

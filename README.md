@@ -25,7 +25,21 @@ Then open `http://127.0.0.1:8000`.
 
 ## Installing on a phone
 
-Pointify is also set up as a progressive web app. Once GitHub Pages has deployed, open the live site on your phone and add it to your home screen.
+Pointify is also set up as a progressive web app. The live install URL is:
+
+`https://lucaewells.github.io/Pointify/`
+
+For the first deployment, GitHub Pages must be enabled once:
+
+1. Open the repository on GitHub.
+2. Go to Settings.
+3. Go to Pages.
+4. Under Build and deployment, set Source to GitHub Actions.
+5. Go to Actions.
+6. Open Deploy Pointify.
+7. Click Run workflow.
+
+After the workflow finishes, open the live site on your phone and add it to your home screen.
 
 On iPhone:
 

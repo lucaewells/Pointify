@@ -25,6 +25,8 @@ body {
     var(--page);
   color: var(--ink);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 button,
@@ -56,6 +58,7 @@ button:active {
 
 input,
 select {
+  font-size: 16px;
   width: 100%;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -74,7 +77,7 @@ button:focus-visible {
 .app-shell {
   width: min(1180px, calc(100% - 28px));
   margin: 0 auto;
-  padding: 30px 0 44px;
+  padding: max(30px, env(safe-area-inset-top)) 0 max(44px, env(safe-area-inset-bottom));
 }
 
 .topbar {
@@ -413,7 +416,7 @@ th:last-child {
 @media (max-width: 620px) {
   .app-shell {
     width: min(100% - 20px, 1180px);
-    padding-top: 18px;
+    padding-top: max(18px, env(safe-area-inset-top));
   }
 
   .topbar,
@@ -444,5 +447,9 @@ th:last-child {
 
   .point-pill {
     width: fit-content;
+  }
+
+  canvas {
+    height: 260px;
   }
 }

@@ -60,3 +60,11 @@ Your points are stored locally on the device using browser storage, so they stay
 ## Project notes
 
 This is intentionally written as a plain HTML/CSS/JavaScript project. That keeps the code easy to read and makes the behavior visible without relying on a framework or generated setup.
+
+## Pipeline control
+
+Two GitHub Actions workflows are included:
+
+- `Deploy Pointify` publishes the static app to GitHub Pages from `main`.
+- `Static smoke check` validates the manifest, confirms the core app files are
+  present, and checks that service worker registration is still referenced.
